@@ -1,7 +1,8 @@
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
+from typing import List
 
-from database import database, get_db
+from database import get_db
 from models import *
 
 app = FastAPI()
@@ -33,7 +34,7 @@ async def create_item(item: ItemCreate, db: Session = Depends(get_db)):
     
     return db_item
 
-@app.get('/get/item/{item_id}', response_model=ItemRead)
+@app.get('/get_item/{item_id}', response_model=ItemRead)
 async def get_item(item_id: int, db: Session = Depends(get_db)):
     item = db.query(ItemDB).filter(ItemDB.id == item_id).first()
     
@@ -41,7 +42,3 @@ async def get_item(item_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail='Item Not Found')
     
     return item
-
-
-
-
