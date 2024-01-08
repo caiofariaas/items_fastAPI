@@ -9,17 +9,17 @@ app = FastAPI()
 
 # aqui colocamos uma lista de dominios permitidos a usarem a API, no caso o frontend
 
-origins = ["http://127.0.0.1:5500"]
+# origins = ["http://127.0.0.1:5500"]
 
-# adiciona um middleware a aplicação FastAPI, neste caso o CORSMiddleware
+# # adiciona um middleware a aplicação FastAPI, neste caso o CORSMiddleware
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["GET", "OPTIONS"],  # Adicione outros métodos conforme necessário
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["GET", "OPTIONS"],  # Adicione outros métodos conforme necessário
+#     allow_headers=["*"],
+# )
 
 # o 'response_model' é usado para especificar qual modelo pydantic será usado para validar e documentar a resposta da rota
 # usamos om 'ItemRead' por ela ser a classe mais completa e essas operações retornam

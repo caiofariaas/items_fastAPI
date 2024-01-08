@@ -37,7 +37,13 @@ class ItemUpdate(BaseModel):
     desc: str
     price: float
     
-    # Modelo que contem todos os campos
+    @validator('price')
+    def price_must_be_positive(cls, value):
+        if value < 0:
+            raise ValueError('Must be greater than or equal to 0')
+        return value
+    
+# Modelo que contem todos os campos
     
 class Item(ItemCreate, ItemUpdate):
     pass
